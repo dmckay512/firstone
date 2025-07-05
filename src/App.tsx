@@ -6,30 +6,111 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Import screens
-import HomeScreen from './screens/HomeScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import SettingsScreen from './screens/SettingsScreen';
-import DetailsScreen from './screens/DetailsScreen';
+import NewsFeedScreen from './screens/NewsFeedScreen';
+import SearchScreen from './screens/SearchScreen';
+import CategoriesScreen from './screens/CategoriesScreen';
+import BookmarksScreen from './screens/BookmarksScreen';
+import ArticleDetailScreen from './screens/ArticleDetailScreen';
+import CategoryFeedScreen from './screens/CategoryFeedScreen';
 
 // Create navigators
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-// Home Stack Navigator
-function HomeStack() {
+// News Stack Navigator
+function NewsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen 
-        name="HomeMain" 
-        component={HomeScreen}
+        name="NewsFeedMain" 
+        component={NewsFeedScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen 
-        name="Details" 
-        component={DetailsScreen}
+        name="ArticleDetail" 
+        component={ArticleDetailScreen}
         options={{ 
-          title: 'Details',
-          headerStyle: { backgroundColor: '#6366f1' },
+          title: 'Article',
+          headerStyle: { backgroundColor: '#1f2937' },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold' }
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+// Categories Stack Navigator
+function CategoriesStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="CategoriesMain" 
+        component={CategoriesScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="CategoryFeed" 
+        component={CategoryFeedScreen}
+        options={({ route }) => ({ 
+          title: route.params?.category || 'Category',
+          headerStyle: { backgroundColor: '#1f2937' },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold' }
+        })}
+      />
+      <Stack.Screen 
+        name="ArticleDetail" 
+        component={ArticleDetailScreen}
+        options={{ 
+          title: 'Article',
+          headerStyle: { backgroundColor: '#1f2937' },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold' }
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+// Search Stack Navigator
+function SearchStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="SearchMain" 
+        component={SearchScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="ArticleDetail" 
+        component={ArticleDetailScreen}
+        options={{ 
+          title: 'Article',
+          headerStyle: { backgroundColor: '#1f2937' },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold' }
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+// Bookmarks Stack Navigator
+function BookmarksStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="BookmarksMain" 
+        component={BookmarksScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="ArticleDetail" 
+        component={ArticleDetailScreen}
+        options={{ 
+          title: 'Article',
+          headerStyle: { backgroundColor: '#1f2937' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: 'bold' }
         }}
@@ -47,14 +128,17 @@ function MainTabs() {
           let iconName;
           
           switch (route.name) {
-            case 'Home':
-              iconName = 'home';
+            case 'News':
+              iconName = 'article';
               break;
-            case 'Profile':
-              iconName = 'person';
+            case 'Categories':
+              iconName = 'category';
               break;
-            case 'Settings':
-              iconName = 'settings';
+            case 'Search':
+              iconName = 'search';
+              break;
+            case 'Bookmarks':
+              iconName = 'bookmark';
               break;
             default:
               iconName = 'circle';
@@ -62,7 +146,7 @@ function MainTabs() {
           
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#6366f1',
+        tabBarActiveTintColor: '#ef4444',
         tabBarInactiveTintColor: '#9ca3af',
         tabBarStyle: {
           backgroundColor: '#ffffff',
@@ -75,9 +159,10 @@ function MainTabs() {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="News" component={NewsStack} />
+      <Tab.Screen name="Categories" component={CategoriesStack} />
+      <Tab.Screen name="Search" component={SearchStack} />
+      <Tab.Screen name="Bookmarks" component={BookmarksStack} />
     </Tab.Navigator>
   );
 }
