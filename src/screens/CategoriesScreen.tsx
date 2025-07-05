@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Category } from '../types';
 import { mockCategories } from '../data/mockData';
 
@@ -33,12 +33,12 @@ const CategoriesScreen: React.FC<CategoriesScreenProps> = ({ navigation }) => {
       activeOpacity={0.8}
     >
       <View style={styles.categoryIcon}>
-        <Icon name={item.icon} size={32} color="#ffffff" />
+        <MaterialIcons name={item.icon} size={32} color="#ffffff" />
       </View>
       <Text style={styles.categoryName}>{item.name}</Text>
       <Text style={styles.categoryDescription}>{item.description}</Text>
       <View style={styles.categoryArrow}>
-        <Icon name="arrow-forward" size={20} color="rgba(255, 255, 255, 0.8)" />
+        <MaterialIcons name="arrow-forward" size={20} color="rgba(255, 255, 255, 0.8)" />
       </View>
     </TouchableOpacity>
   );

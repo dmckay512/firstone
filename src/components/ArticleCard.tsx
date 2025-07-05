@@ -7,7 +7,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { NewsArticle } from '../types';
 
 const { width } = Dimensions.get('window');
@@ -89,7 +89,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         {/* Bottom Row */}
         <View style={styles.bottomRow}>
           <View style={styles.sourceInfo}>
-            <Icon name="article" size={16} color="#6b7280" />
+            <MaterialIcons name="article" size={16} color="#6b7280" />
             <Text style={styles.sourceText}>{article.source}</Text>
             {article.readTime && (
               <>
@@ -104,7 +104,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
               style={styles.bookmarkButton}
               onPress={() => onBookmark(article)}
             >
-              <Icon
+              <MaterialIcons
                 name={article.isBookmarked ? 'bookmark' : 'bookmark-border'}
                 size={20}
                 color={article.isBookmarked ? '#ef4444' : '#6b7280'}

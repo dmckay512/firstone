@@ -7,10 +7,10 @@ import {
   RefreshControl,
   TouchableOpacity,
   Alert,
-  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
+import * as Linking from 'expo-linking';
 import { NewsArticle, Ad, FeedItem } from '../types';
 import { mockFeed } from '../data/mockData';
 import ArticleCard from '../components/ArticleCard';
@@ -61,7 +61,9 @@ const NewsFeedScreen: React.FC<NewsFeedScreenProps> = ({ navigation }) => {
           text: 'Open', 
           onPress: () => {
             // In a real app, you'd open the ad URL
-            console.log('Opening ad:', ad.url);
+            Linking.openURL(ad.url).catch(err => {
+              console.error('Error opening URL:', err);
+            });
           }
         },
       ]
@@ -116,7 +118,7 @@ const NewsFeedScreen: React.FC<NewsFeedScreenProps> = ({ navigation }) => {
           style={styles.notificationButton}
           onPress={() => console.log('Notifications')}
         >
-          <Icon name="notifications" size={24} color="#1f2937" />
+          <MaterialIcons name="notifications" size={24} color="#1f2937" />
         </TouchableOpacity>
       </View>
     </View>
@@ -124,7 +126,7 @@ const NewsFeedScreen: React.FC<NewsFeedScreenProps> = ({ navigation }) => {
 
   const renderEmpty = () => (
     <View style={styles.emptyState}>
-      <Icon name="article" size={64} color="#9ca3af" />
+      <MaterialIcons name="article" size={64} color="#9ca3af" />
       <Text style={styles.emptyTitle}>No news available</Text>
       <Text style={styles.emptySubtitle}>
         Pull down to refresh and get the latest news
@@ -141,7 +143,7 @@ const NewsFeedScreen: React.FC<NewsFeedScreenProps> = ({ navigation }) => {
         style={styles.refreshButton}
         onPress={handleRefresh}
       >
-        <Icon name="refresh" size={16} color="#ef4444" />
+        <MaterialIcons name="refresh" size={16} color="#ef4444" />
         <Text style={styles.refreshButtonText}>Refresh</Text>
       </TouchableOpacity>
     </View>
@@ -152,7 +154,7 @@ const NewsFeedScreen: React.FC<NewsFeedScreenProps> = ({ navigation }) => {
       <SafeAreaView style={styles.container}>
         {renderHeader()}
         <View style={styles.loadingContainer}>
-          <Icon name="article" size={48} color="#9ca3af" />
+          <MaterialIcons name="article" size={48} color="#9ca3af" />
           <Text style={styles.loadingText}>Loading news feed...</Text>
         </View>
       </SafeAreaView>

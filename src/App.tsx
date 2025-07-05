@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 // Import screens
 import NewsFeedScreen from './screens/NewsFeedScreen';
@@ -125,7 +126,7 @@ function MainTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+          let iconName: keyof typeof MaterialIcons.glyphMap;
           
           switch (route.name) {
             case 'News':
@@ -144,7 +145,7 @@ function MainTabs() {
               iconName = 'circle';
           }
           
-          return <Icon name={iconName} size={size} color={color} />;
+          return <MaterialIcons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#ef4444',
         tabBarInactiveTintColor: '#9ca3af',
@@ -171,6 +172,7 @@ function MainTabs() {
 export default function App() {
   return (
     <SafeAreaProvider>
+      <StatusBar style="auto" />
       <NavigationContainer>
         <MainTabs />
       </NavigationContainer>

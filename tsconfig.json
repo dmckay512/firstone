@@ -1,5 +1,4 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["ES2017"],
@@ -17,12 +16,10 @@
   },
   "include": [
     "src/**/*",
-    "index.js"
+    "App.js"
   ],
   "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
+    "node_modules"
+  ],
+  "extends": "expo/tsconfig.base"
 }

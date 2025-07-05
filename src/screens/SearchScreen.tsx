@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { NewsArticle } from '../types';
 import { searchArticles } from '../data/mockData';
 import ArticleCard from '../components/ArticleCard';
@@ -72,7 +72,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({ navigation }) => {
     if (isSearching) {
       return (
         <View style={styles.centerContainer}>
-          <Icon name="search" size={48} color="#9ca3af" />
+          <MaterialIcons name="search" size={48} color="#9ca3af" />
           <Text style={styles.searchingText}>Searching...</Text>
         </View>
       );

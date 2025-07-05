@@ -7,7 +7,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Ad } from '../types';
 
 const { width } = Dimensions.get('window');
@@ -21,7 +21,7 @@ const AdCard: React.FC<AdCardProps> = ({ ad, onPress }) => {
   const renderAdBadge = () => {
     return (
       <View style={styles.adBadge}>
-        <Icon name="info" size={12} color="#6b7280" />
+        <MaterialIcons name="info" size={12} color="#6b7280" />
         <Text style={styles.adBadgeText}>Ad</Text>
       </View>
     );
@@ -32,7 +32,7 @@ const AdCard: React.FC<AdCardProps> = ({ ad, onPress }) => {
     
     return (
       <View style={styles.promotedBadge}>
-        <Icon name="star" size={12} color="#f59e0b" />
+        <MaterialIcons name="star" size={12} color="#f59e0b" />
         <Text style={styles.promotedText}>Promoted</Text>
       </View>
     );
@@ -97,13 +97,13 @@ const AdCard: React.FC<AdCardProps> = ({ ad, onPress }) => {
         {/* Bottom row */}
         <View style={styles.cardBottomRow}>
           <View style={styles.advertiserInfo}>
-            <Icon name="business" size={16} color="#6b7280" />
+            <MaterialIcons name="business" size={16} color="#6b7280" />
             <Text style={styles.advertiserText}>{ad.advertiser}</Text>
           </View>
           
           <View style={styles.ctaButton}>
             <Text style={styles.ctaText}>Learn More</Text>
-            <Icon name="arrow-forward" size={16} color="#ef4444" />
+            <MaterialIcons name="arrow-forward" size={16} color="#ef4444" />
           </View>
         </View>
       </View>
